@@ -1,0 +1,1 @@
+# Dinâmica de motor de busca
