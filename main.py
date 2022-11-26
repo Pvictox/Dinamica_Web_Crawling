@@ -14,19 +14,23 @@ dicionarioPaginas = Pagina.buildModelXML(collection=collection, dicionarioPagina
 
 
 palavra = "computer"
+
+# ======== BUSCA POR UMA PALAVRA ============
 ControlPagina.aplicarRelevancia(palavra, dicionarioPag=dicionarioPaginas)
 
-listaRelevante = []
-for key, value in dicionarioPaginas.items():
-    if (value.getRelevancia() > 0):
-        listaRelevante.append(value)
+# listaRelevante = []
+# for key, value in dicionarioPaginas.items():
+#     if (value.getRelevancia() > 0):
+#         listaRelevante.append(value)
 
-listaRelevante.sort(key=lambda x:x.getRelevancia(), reverse=True)
-print(len(listaRelevante))
+# listaRelevante.sort(key=lambda x:x.getRelevancia(), reverse=True)
+# print(len(listaRelevante))
 
-for pg in listaRelevante:
-    if (cont < 5):
-        print(pg.toString())
-        cont+=1
+# for pg in listaRelevante:
+#     if (cont < 5):
+#         print(pg.toString())
+#         cont+=1
+    
+# ==========================================
 
 
