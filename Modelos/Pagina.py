@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 class Pagina:
     def __init__(self, id, titulo, texto):
         self.id = id
@@ -5,7 +7,22 @@ class Pagina:
         self.texto = texto
         self.links = []
         self.relevancia = 0
+        self.palavrasTitulo = dict()
+        self.palavrasTexto = dict()
     
+
+    def getPalavrasTitulo(self):
+        return self.palavrasTitulo
+
+    def getPalavrasTexto(self):
+        return self.palavrasTexto
+
+    def setPalavrasTitulo(self,valor):
+        self.palavrasTitulo = valor
+
+    def setPalavrasTexto(self,valor):
+        self.palavrasTexto = valor
+
     def addLink(self, idLink):
         self.links.append(idLink)
     
@@ -30,6 +47,11 @@ class Pagina:
     def toString(self):
         return "Id: "+str(self.id)+" | Titulo: "+str(self.titulo)+" | Relevancia: "+str(self.relevancia)
 
+    def setTitulo(self, valor):
+        self.titulo = valor
+    
+    def setTexto(self, valor):
+        self.texto = valor
     
     def buildModelXML(collection, dicionarioPaginas):
         pages = collection.getElementsByTagName("page")

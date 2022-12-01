@@ -1,3 +1,56 @@
+
+cache = dict()
+
+def searchTermo(termo, dicionarioPag):
+    result = dict()
+    termo_splitado = termo.lower().split(" ")
+    if (len(cache) > 19):
+        cache.clear()
+    if (len(termo_splitado) == 1):
+        if (termo_splitado[0] in cache):
+            print("Palavra previamente pesquisada | Retornando Cache")
+            return cache[termo_splitado[0]]
+        else:    
+            for key,value in dicionarioPag.items():
+                dicionarioTitulo = value.getPalavrasTitulo()
+                relevanciaTermoTitulo = 0
+                if (termo_splitado[0] in dicionarioTitulo):
+                    relevanciaTermoTitulo = dicionarioTitulo[termo_splitado[0]] * 30  
+                relevanciaTermoTexto = 0
+                if (termo_splitado[0] in value.getPalavrasTexto()):
+                    relevanciaTermoTexto = value.getPalavrasTexto()[termo_splitado[0]] * 10
+                result[value] = relevanciaTermoTexto+relevanciaTermoTitulo
+            cache[termo_splitado[0]] = result
+            return result
+        
+
+                 
+
+
+
+def termosEmPagina(dicionarioPag):
+    for key, value in dicionarioPag.items():
+        palavras_titulo_pagina = value.getTitulo().lower().split(" ")
+        dictTitulo = applyRelevanciaCadaPalavra(palavras_titulo_pagina)
+        value.setPalavrasTitulo(dictTitulo)
+        palavras_texto_pagina = value.getTexto().lower().split(" ")
+        dictTexto = applyRelevanciaCadaPalavra(palavras_texto_pagina)
+        value.setPalavrasTexto(dictTexto)
+
+
+
+def applyRelevanciaCadaPalavra(conjPalavras):
+    dicionarioRelevancia = dict()
+    for palavra in conjPalavras:
+        if (len(palavra) > 3):
+            if (palavra in dicionarioRelevancia):
+                dicionarioRelevancia[palavra] += int(1)
+            else:
+                dicionarioRelevancia[palavra] = int(1)
+    return dicionarioRelevancia    
+            
+
+
 def aplicarRelevancia(termo, dicionarioPag):
     split_Termo = termo.split(" ")
     if (len(split_Termo) == 1): # 1 palavra só
