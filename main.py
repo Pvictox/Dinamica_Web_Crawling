@@ -19,8 +19,8 @@ palavra = "computer science"
 ControlPagina.termosEmPagina(dicionarioPag=dicionarioPaginas)
 
 cont = 0
-
-while (cont < 2):
+termo = "ent"
+while (termo != ""):
     termo = input("Digite o termo\n")
     contAmostra = 0
     resultado = ControlPagina.searchTermo(termo=termo, dicionarioPag=dicionarioPaginas)
@@ -33,22 +33,5 @@ while (cont < 2):
                 print("Titulo: "+x[0].getTitulo() + "| Relevancia: "+str(x[1]))
                 contAmostra+=1
     print("============== RESULTADOS ================= ")
-# ======== BUSCA POR UMA PALAVRA ============
-# ControlPagina.aplicarRelevancia(palavra, dicionarioPag=dicionarioPaginas)
-
-# listaRelevante = []
-# for key, value in dicionarioPaginas.items():
-#     if (value.getRelevancia() > 0):
-#         listaRelevante.append(value)
-
-# listaRelevante.sort(key=lambda x:x.getRelevancia(), reverse=True)
-# #print(len(listaRelevante))
-
-# for pg in listaRelevante:
-#     if (cont < 5):
-#         print(pg.toString())
-#         cont+=1
-    
-# ==========================================
 
 
